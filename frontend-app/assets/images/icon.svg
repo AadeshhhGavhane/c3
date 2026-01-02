@@ -1,0 +1,33 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient effect -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC7F13;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="200" ry="200" fill="url(#bgGradient)"/>
+  
+  <!-- Inner shadow effect -->
+  <rect x="40" y="40" width="944" height="944" rx="180" ry="180" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+  
+  <!-- C3 Text - Bold and centered -->
+  <text x="512" y="620" font-family="Arial, sans-serif" font-size="380" font-weight="900" fill="white" text-anchor="middle" letter-spacing="-15">C3</text>
+  
+  <!-- Subtitle text -->
+  <text x="512" y="720" font-family="Arial, sans-serif" font-size="80" font-weight="600" fill="rgba(255,255,255,0.9)" text-anchor="middle">CANTEEN</text>
+  
+  <!-- Decorative elements - Food tray/plate at bottom -->
+  <ellipse cx="512" cy="850" rx="200" ry="35" fill="rgba(255,255,255,0.25)"/>
+  
+  <!-- Utensils on sides -->
+  <path d="M 250 250 L 250 320 L 270 320 L 270 250 Z" fill="rgba(255,255,255,0.3)"/>
+  <path d="M 774 250 L 774 320 L 794 320 L 794 250 Z" fill="rgba(255,255,255,0.3)"/>
+  
+  <!-- Small decorative circles -->
+  <circle cx="380" cy="280" r="12" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="644" cy="280" r="12" fill="rgba(255,255,255,0.4)"/>
+</svg>
+

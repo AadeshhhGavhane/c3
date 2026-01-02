@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "C3 - College Canteen Catalog",
+    "slug": "c3-college-canteen-catalog",
+    "version": "1.0.0",
+    "description": "Browse today's menu, weekly schedule, and full catalog of delicious meals from your college canteen. Filter by breakfast, lunch, veg, or non-veg options.",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "frontendapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#EC7F13",
+        "foregroundImage": "./assets/images/icon.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.aadeshgavhane.c3collegecanteencatalog"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "backgroundColor": "#000000"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f485722c-5afb-45fa-85d3-fa0265f32552"
+      }
+    }
+  }
+}

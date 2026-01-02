@@ -29,11 +29,26 @@ const getTransporter = () => {
     return null;
   }
   
+  // Use explicit SMTP configuration for better compatibility with Railway
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
       user,
       pass: password,
+    },
+    // Connection timeout settings for Railway
+    connectionTimeout: 60000, // 60 seconds
+    socketTimeout: 60000, // 60 seconds
+    greetingTimeout: 30000, // 30 seconds
+    // Retry settings
+    pool: true,
+    maxConnections: 1,
+    maxMessages: 3,
+    // Additional options for Railway
+    tls: {
+      rejectUnauthorized: false, // Railway might have certificate issues
     },
   });
 };
@@ -71,10 +86,31 @@ export const sendOTPEmail = async (email: string, otp: string): Promise<void> =>
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    // Verify connection before sending
+    await transporter.verify();
+    console.log('✅ SMTP server connection verified');
+    
+    // Send email with timeout
+    await Promise.race([
+      transporter.sendMail(mailOptions),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Email send timeout')), 30000)
+      ),
+    ]);
+    
     console.log(`✅ OTP email sent to ${email}`);
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Error sending OTP email:', error);
+    
+    // More detailed error logging
+    if (error.code === 'ETIMEDOUT') {
+      console.error('   Connection timeout - Railway may be blocking SMTP connections');
+    } else if (error.code === 'ECONNREFUSED') {
+      console.error('   Connection refused - Check SMTP server settings');
+    } else if (error.code === 'EAUTH') {
+      console.error('   Authentication failed - Check Gmail credentials');
+    }
+    
     throw new Error('Failed to send OTP email');
   }
 };
